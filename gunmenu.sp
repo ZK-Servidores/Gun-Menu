@@ -5,8 +5,7 @@
 #include <sdktools_functions>
 #include <sdktools_entinput>
 
-enum
-{
+enum {
 	Slot_Primary = 0,
 	Slot_Secondary,
 	Slot_Knife,
@@ -15,8 +14,7 @@ enum
 	Slot_None
 };
 
-enum
-{
+enum {
 	Team_None = 0,
 	Team_Spec,
 	Team_T,
@@ -61,7 +59,7 @@ public Plugin myinfo =
 	name		= "[CSGO] Gun Menu",
 	author		= "Potatoz (Rewritten by Grey83, crashzk)",
 	description	= "Gun Menu for gamemodes such as Retake, Deathmatch etc",
-	version		= "1.0.6",
+	version		= "1.1",
 	url			= "https://forums.alliedmods.net/showthread.php?t=294225"
 };
 
@@ -181,11 +179,17 @@ public void RequestFrame_Callback(int client)
 	if(!wpn) wpn = GetRandomInt(1, iMenuSize[1]);
 	GivePlayerItem(client, sSecondaryWeapons[wpn][0]);
 
-	switch(GetRandomInt(0, 20))
+	switch(GetRandomInt(0, 9))
 	{
 		case 1:		GivePlayerItem(client, "weapon_flashbang");
-		case 2:		GivePlayerItem(client, "weapon_hegrenade");
-		case 18:	GivePlayerItem(client, "weapon_smokegrenade");
+		case 3:		GivePlayerItem(client, "weapon_hegrenade");
+		case 6:		GivePlayerItem(client, "weapon_smokegrenade");
+		case 8: {
+			switch(GetClientTeam(client)) {
+				case Team_T:	GivePlayerItem(client, "weapon_molotov");
+				case Team_CT:	GivePlayerItem(client, "weapon_incgrenade");
+			}
+		}
 	}
 }
 
