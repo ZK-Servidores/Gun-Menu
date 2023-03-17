@@ -178,14 +178,24 @@ public void RequestFrame_Callback(int client)
 	wpn = iWpnChoice[1][client];
 	if(!wpn) wpn = GetRandomInt(1, iMenuSize[1]);
 	GivePlayerItem(client, sSecondaryWeapons[wpn][0]);
-
-	switch(GetRandomInt(0, 9))
+	
+	switch(GetRandomInt(0, 10))
 	{
-		case 1:		GivePlayerItem(client, "weapon_flashbang");
-		case 3:		GivePlayerItem(client, "weapon_hegrenade");
-		case 6:		GivePlayerItem(client, "weapon_smokegrenade");
-		case 8: {
-			switch(GetClientTeam(client)) {
+		case 2:	GivePlayerItem(client, "weapon_smokegrenade");
+		case 9:	GivePlayerItem(client, "weapon_hegrenade");		
+	}
+		
+	switch(GetRandomInt(0, 1))
+	{
+		case 1:	GivePlayerItem(client, "weapon_flashbang");
+	}
+
+	switch(GetRandomInt(0, 2))
+	{		
+		case 2: 
+		{
+			switch(GetClientTeam(client)) 
+			{
 				case Team_T:	GivePlayerItem(client, "weapon_molotov");
 				case Team_CT:	GivePlayerItem(client, "weapon_incgrenade");
 			}
